@@ -13,11 +13,9 @@
 	<meta name="apple-touch-fullscreen" content="yes">
 	<meta charset="UTF-8" />
 
-    <link rel="stylesheet" type="text/css" href="../css/all.css">
-    <script>
-    
-    
-    </script>
+	<link rel="stylesheet" type="text/css" href="../css/all.css">
+	<script src="../bower_components/jquery/dist/jquery.js"></script>
+	<script src="../js/home.html.js"></script>	
 </head>
 
 <body>
@@ -41,7 +39,7 @@
 			</p>
 		</div>
 
-		<div class="flakes-content">
+		<div class="flakes-content" id="home_content">
 
 			<div class="flakes-mobile-top-bar">
 				<a href="" class="logo-wrap">
@@ -54,29 +52,51 @@
 			</div>
 
 		</div>
+
+
 	</div>
 
 
 	<link rel="stylesheet" type="text/css" href="../bower_components/gridforms/gridforms/gridforms.css">
 
-	<script src="../bower_components/jquery/dist/jquery.js"></script>
 	<script src="../bower_components/snapjs/snap.js"></script>
 	<script src="../bower_components/responsive-elements/responsive-elements.js"></script>
 	<script src="../bower_components/gridforms/gridforms/gridforms.js"></script>
-
     <script src="../js/base.js"></script>
     <script>
-        console.log("what the fuck is where i'm at");
-    $.post("../home2.php", {task:"whatever"}, function( data ){
 
-        for( var i in data ){
+			console.log("head scripts is where i'm at");
+		$.post("../home.php", {task:"whatever"}, function( data ){
+	console.log( data );
+			for( var i in data.head ){
+	
+				$.getScript( "../"+data.head[i] );
+	
+	
+	
+			}
+			$.each(data.module_ui, function( index, value ) {
 
-            $.getScript( "../"+data[i] );
+				$.ajax({ type: "GET",   
+					url: "../"+value,   
+					success : function(text)
+					{
+						$('#home_content').append( text );
+						if( index != "me" ){
 
-        }
+						$("#"+index+"-view").hide();
 
-    }, "json");
-    
-    </script>
+						}
+					}
+				});
+
+			});
+
+			
+
+	
+		}, "json");    
+		
+		</script>
 </body>
 </html>

@@ -1,14 +1,17 @@
+
+
+
 function _page_init(){
 
-    $("#publicity-page").hide();
+    $("#publicity-view").hide();
 
-    $("#content-page").hide();
+    $("#content-view").hide();
 
-    $("#blog-engine").hide();
+    $("#blog-view").hide();
 
-    $("#boards-page").hide();
+    $("#boards-view").hide();
 
-    $("#chat-server").hide();
+    $("#chat-view").hide();
 
 
 }

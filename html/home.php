@@ -4,7 +4,8 @@ session_start();
 
 class home_page {
 
-    public $head_script_tags;
+    public $head_scripts;
+    public $body_scripts;
     public $detected_modules;
     public $module_ui_files;
     public $xml_files;
@@ -16,22 +17,38 @@ class home_page {
     public $user_id;
     public $email;
 
-    public function __construct( ){
+    /**
+     * The construct expects $params to be an array that contains
+     * user info that will eventually be used to determine which
+     * or what content or options are built into the UI for
+     * the user.  Mostly, it will figure out whether or not
+     * to offer adminitrative options or user-specific calls
+     * from plugins or extensions.
+     */
+    public function __construct( $params = false ){
 
-  
+        if( $params ){
+            /** */
+            $this->username     = $params["username"];
+            $this->user_id      = $params["user_id"];
+            $this->email        = $params["email"];
 
-            $this->head_script_tags = array();
+            $this->head_scripts     = array();
             $this->detected_modules = array();
-            $this->module_ui_files = array();
-            $this->xml_files = array();
+            $this->module_ui_files  = array();
+            $this->xml_files        = array();
 
 
-        $this->scan_modules_dir();
+            $this->scan_modules_dir();
+
+        }
+
+
     }
 
      public function scan_modules_dir(){
 
-        $counter = 0;
+        $hcounter = 0; $bcounter = 0;
 
         $modules_container = "elements";
 
@@ -44,7 +61,7 @@ class home_page {
                  if( file_exists($modules_container . DIRECTORY_SEPARATOR . $module . DIRECTORY_SEPARATOR . $module . ".xml") ){
 
                      $this->detected_modules[ $module ] = $module;
-// //simplexml_load_file( $modules_container . DIRECTORY_SEPARATOR . $module . DIRECTORY_SEPARATOR . $module . ".xml" );
+
                      $this->xml_files[ $module ] = simplexml_load_file( $modules_container . DIRECTORY_SEPARATOR . $module . DIRECTORY_SEPARATOR . $module . ".xml" );
                     
                     $str = "";
@@ -53,9 +70,19 @@ class home_page {
 
                          $str = $modules_container . DIRECTORY_SEPARATOR . $module . DIRECTORY_SEPARATOR .$val;
 
-                         $this->head_script_tags[ $counter ] = $str; $counter++;
+                         $this->head_scripts[ $hcounter ] = $str; $hcounter++;
 
                      }
+
+                     //$counter = 0;
+
+                     foreach( $this->xml_files[ $module ]->end_body_js_files->end_body_js_file as $val ){
+
+                        $str = $modules_container . DIRECTORY_SEPARATOR . $module . DIRECTORY_SEPARATOR .$val;
+
+                        $this->body_scripts[ $bcounter ] = $str; $bcounter++;
+
+                    }                     
 
                      $this->module_ui_files[ $module ] = $modules_container . DIRECTORY_SEPARATOR . $module . DIRECTORY_SEPARATOR .$this->xml_files[ $module ]->ui_file;
 
@@ -75,20 +102,25 @@ class home_page {
 
 if( isset( $_SESSION["username"] ) && isset( $_SESSION["email"] ) && isset( $_SESSION["user_id"] ) ){
 
-    // run a check to make sure this user makes sense here
-    //$page = new home_page( $_SESSION["username"] );
 
-    //$page->user_id  = $_SESSION["user_id"];
+  $home = new home_page( array( "username" => $_SESSION["username"], "email" => $_SESSION["email"], "user_id" => $_SESSION["user_id"] ) );
 
-  //  $page->email    = $_SESSION["email"];
-  $home = new home_page(  );
+//    echo json_encode( $home->head_scripts );
 
-//   $home->user_id  = $_SESSION["user_id"];
+    /**
+     * The info that needs to be built up here 
+     * 
+     *  - head javascripts
+     *  - body interfaces
+     *  - body javascripts
+     * 
+     */
 
-//   $home->email    = $_SESSION["email"];
-    echo json_encode( $home->head_script_tags );
 
-    //echo json_encode( "fuck" );
+
+     $gui = array( "head" => $home->head_scripts, "module_ui" => $home->module_ui_files, "body" => $home->body_scripts, "modules" => $home->detected_modules );
+     echo json_encode( $gui );
+
 
 }else{ // the user is not logged in per session data
 
