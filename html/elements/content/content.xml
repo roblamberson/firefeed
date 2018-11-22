@@ -1,0 +1,14 @@
+<info>
+
+    <module_name>content</module_name>
+
+    <head_js_files>
+    </head_js_files>
+
+    <ui_file>ui.html</ui_file>
+
+    <end_body_js_files>
+    </end_body_js_files>
+
+
+</info>
