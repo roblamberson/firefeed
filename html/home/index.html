@@ -64,39 +64,27 @@
 	<script src="../bower_components/gridforms/gridforms/gridforms.js"></script>
     <script src="../js/base.js"></script>
     <script>
+	$.post("../home.php", { task: "whatever" }, function(data) {
 
-			console.log("head scripts is where i'm at");
-		$.post("../home.php", {task:"whatever"}, function( data ){
-	console.log( data );
-			for( var i in data.head ){
-	
-				$.getScript( "../"+data.head[i] );
-	
-	
-	
-			}
-			$.each(data.module_ui, function( index, value ) {
+		for(var i in data.head){ $.getScript("../" + data.head[i]); }
 
-				$.ajax({ type: "GET",   
-					url: "../"+value,   
-					success : function(text)
-					{
-						$('#home_content').append( text );
-						if( index != "me" ){
+		$.each(data.module_ui, function(index, value) {
 
-						$("#"+index+"-view").hide();
+			$.ajax( {type: "GET", url: "../" + value,
 
-						}
-					}
-				});
+			success: function(text) {
 
-			});
-
+				$('#home_content').append(text);
 			
+					if( index != "me" ){ $("#" + index + "-view" ).hide(); }
+				
+			}
+			
+			}); // /end $.ajax
 
-	
-		}, "json");    
-		
-		</script>
+		}); // /end $.each
+
+	}, "json");
+	</script>
 </body>
 </html>
