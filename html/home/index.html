@@ -4,44 +4,42 @@
 <!--[if IE 8 ]>    <html lang="en" class="no-js ie8"> <![endif]-->
 <!--[if IE 9 ]>    <html lang="en" class="no-js ie9"> <![endif]-->
 <!--[if (gt IE 9)|!(IE)]><!--> <html lang="en" class="no-js"><!--<![endif]-->
-
 <head>
 	<title>FireFeed Home</title>
-
 	<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
 	<meta name="apple-mobile-web-app-capable" content="yes">
 	<meta name="apple-touch-fullscreen" content="yes">
 	<meta charset="UTF-8" />
-
 	<link rel="stylesheet" type="text/css" href="../css/all.css">
 	<script src="../bower_components/jquery/dist/jquery.js"></script>
 	<script src="../js/home.html.js"></script>	
 </head>
-
-<body>
-	<!--[if lt IE 7]>
+<body> <!--[if lt IE 7]>
 		<p class="chromeframe" style="background:#eee; padding:10px; width:100%">Your browser is <em>ancient!</em> <a href="http://browsehappy.com/">Upgrade to a different browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to experience this site.</p>
 	<![endif]-->
 
 	<div class="flakes-frame">
 
 		<div class="flakes-navigation">
+
 			<a href="index.html" class="logo">
 				<img src="../img/logo.png" width="120">
 			</a>
 
-			<ul id="ul-home-menu">
-			</ul>
+			<ul id="ul-home-menu"></ul>
 
 			<p class="foot">
 				Hello <b id="b-username"></b><br>
+				User # <b id="b-user-id"></b><br>
 				<a href="">My Account</a> &bullet; <a href="">Logout</a>
 			</p>
+
 		</div>
 
 		<div class="flakes-content" id="home_content">
 
 			<div class="flakes-mobile-top-bar">
+
 				<a href="" class="logo-wrap">
 					<img src="../img/logo.png" height="30px">
 				</a>
@@ -49,54 +47,127 @@
 				<a href="" class="navigation-expand-target">
 					<img src="../img/site-wide/navigation-expand-target.png" height="26px">
 				</a>
+
 			</div>
 
 		</div>
 
-
 	</div>
 
-
 	<link rel="stylesheet" type="text/css" href="../bower_components/gridforms/gridforms/gridforms.css">
-
 	<script src="../bower_components/snapjs/snap.js"></script>
 	<script src="../bower_components/responsive-elements/responsive-elements.js"></script>
 	<script src="../bower_components/gridforms/gridforms/gridforms.js"></script>
     <script src="../js/base.js"></script>
     <script>
+/*
+Posting a load variable to the home.php file will trigger
+the server to check for user session data that will report 
+"no-session" if there is no session data available to the
+server and if there is, it will provide the interface info
+and user information that we need to determine how to put
+this home page together appropriately for this specific user.
+*/$.post("../home.php", { load:"load" }, function(data) {
+/* http://patorjk.com/software/taag/#p=display&f=Small&t=no%20server%20session%20data 
+													   _               _      _        
+	_ _  ___   ___ ___ _ ___ _____ _ _   ___ ___ _____(_)___ _ _    __| |__ _| |_ __ _ 
+	| ' \/ _ \ (_-</ -_) '_\ V / -_) '_| (_-</ -_|_-<_-< / _ \ ' \  / _` / _` |  _/ _` |
+	|_||_\___/ /__/\___|_|  \_/\___|_|   /__/\___/__/__/_\___/_||_| \__,_\__,_|\__\__,_|	*/
+		if( typeof data === "string" ){	
+/*              _ _            _ */window.location.replace("../index.html");/*                     
+     _ _ ___ __| (_)_ _ ___ __| |_   _  _ ___ ___ _ _ 
+    | '_/ -_) _` | | '_/ -_) _|  _| | || (_-</ -_) '_|
+    |_| \___\__,_|_|_| \___\__|\__|  \_,_/__/\___|_|  */
 
-			console.log("head scripts is where i'm at");
-		$.post("../home.php", {task:"whatever"}, function( data ){
-	console.log( data );
-			for( var i in data.head ){
-	
-				$.getScript( "../"+data.head[i] );
-	
-	
-	
-			}
-			$.each(data.module_ui, function( index, value ) {
+		}else{		/*   ___ ___ _ ___ _____ _ _   _ __ _ _ _____ _(_)__| |___ ___  __| |__ _| |_ __ _ 
+						(_-</ -_) '_\ V / -_) '_| | '_ \ '_/ _ \ V / / _` / -_|_-< / _` / _` |  _/ _` |
+						/__/\___|_|  \_/\___|_|   | .__/_| \___/\_/|_\__,_\___/__/ \__,_\__,_|\__\__,_|
+												|_| */
+			/* http://patorjk.com/software/taag/#p=display&f=Small&t=load%20head%20scripts%20specified%20in%20server%20data
+ 			 _              _   _                _              _      _                        _  __ _        _   _                                     _      _        
+			| |___  __ _ __| | | |_  ___ __ _ __| |  ___ __ _ _(_)_ __| |_ ___  ____ __  ___ __(_)/ _(_)___ __| | (_)_ _    ___ ___ _ ___ _____ _ _   __| |__ _| |_ __ _ 
+			| / _ \/ _` / _` | | ' \/ -_) _` / _` | (_-</ _| '_| | '_ \  _(_-< (_-< '_ \/ -_) _| |  _| / -_) _` | | | ' \  (_-</ -_) '_\ V / -_) '_| / _` / _` |  _/ _` |
+			|_\___/\__,_\__,_| |_||_\___\__,_\__,_| /__/\__|_| |_| .__/\__/__/ /__/ .__/\___\__|_|_| |_\___\__,_| |_|_||_| /__/\___|_|  \_/\___|_|   \__,_\__,_|\__\__,_|
+																|_|              |_|                                                                                    */                                                                                  
+			for(var i in data.head){ $.getScript("../" + data.head[i]); }
+			/*_              _        _                   _    _   _           _      _        
+			| |___  __ _ __| |  _  _(_)  ____ __  ___ __( )__| | (_)_ _    __| |__ _| |_ __ _ 
+			| / _ \/ _` / _` | | || | | (_-< '_ \/ -_) _|// _` | | | ' \  / _` / _` |  _/ _` |
+			|_\___/\__,_\__,_|  \_,_|_| /__/ .__/\___\__| \__,_| |_|_||_| \__,_\__,_|\__\__,_|
+											|_|                                                */
+			$.each(data.module_ui, function(index, value) {
 
-				$.ajax({ type: "GET",   
-					url: "../"+value,   
-					success : function(text)
-					{
-						$('#home_content').append( text );
+				$.ajax( {type: "GET", url: "../" + value,
+
+					success: function(text) {
+
+						$( '#home_content' ).append( text );
+
 						if( index != "me" ){
+							
+							$( "#" + index + "-view" ).hide(); 
+						
+						}else{
+							// me-view interface is being left open here 
+							// so let's ask the data to tell us exactly 
+							// who this data is meant for.
+							$.post("../home.php", { task:"user-session-info" }, function( info ){
 
-						$("#"+index+"-view").hide();
+								console.log( "session data from server" ); console.log( info );
+								// this is where we can use the server's user session data to 
+								// deal with whatever shit the interface can't do without.
+
+								$( "#details_me" ).html( " " + info.username + "'s details" );
+								//b-username
+								$("#b-username").html( info.username );
+
+								$("#b-user-id").html( info.user_id );
+
+								$("#b-user-id").data( "user-id", info.user_id );
+
+								$("#email").val( info.email );
+
+								if( info.first_name !== false ){
+
+									$("#first_name").val( info.first_name );
+									$("#last_name").val( info.last_name );
+									$("#organization").val( info.organization );
+									$("#titles").val( info.titles );
+									$("#city").val( info.city );
+									$("#country").val( info.country );
+									$("#about_me").text( info.about_me );
+									$("#email").val( info.email );
+									$("#website").val( info.website );
+									$("#telephone").val( info.telephone );
+									$("#cellular").val( info.cellular );
+									$("#social_profile_url").val( info.social_profile_url );
+
+								}else{
+
+									console.log( "that's all the shit we've got" );
+
+								}
+
+							}, "json");							
 
 						}
+
 					}
-				});
+
+				}); 
 
 			});
+			/*_             _                        _                                          __     
+			| |__  ___  __| |_  _   ___ __ _ _ _ __| |_ ___  _ __ _ _   ____ ___ ___ _   _ _  / _|___ 
+			| '_ \/ _ \/ _` | || | (_-</ _| '_| '_ \  _(_-< | '_ \ '_| (_-< '_\ V / '_| | ' \|  _/ _ \
+			|_.__/\___/\__,_|\_, | /__/\__|_| | .__/\__/__/ | .__/_|   /__/_|  \_/|_|   |_||_|_| \___/
+							 |__/             |_|           |_|                                       */
+			for(var i in data.body){ $.getScript("../" + data.body[i]); }
 
-			
+		}
 
-	
-		}, "json");    
-		
-		</script>
+	}, "json");
+
+	</script>
 </body>
 </html>

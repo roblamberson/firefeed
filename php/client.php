@@ -591,6 +591,70 @@ class registration {
     
 }
 
+class ff_user {
+
+    public $first_name;
+    public $last_name;
+    public $organization;
+    public $titles;
+    public $city;
+    public $country;
+    public $about_me;
+    public $email;
+    public $website;
+    public $telephone;
+    public $cellular;
+    public $social_profile_url;
+    public $user_id;
+    public $info;
+
+    public function __construct(){
+
+        $this->info = array(    "first_name",       "last_name",
+                                "organization",     "titles",
+                                "city",             "country",
+                                "about_me",         "email",
+                                "website",          "telephone",
+                                "cellular",         "social_profile_url",
+                                "user_id"   );
+
+    } 
+
+
+
+    public function chk4userDetails(){
+
+        global $database;
+
+        $us = $database->select("users_details", $this->info, ["user_id"=>$this->user_id]);
+
+        if( $us ){      return $us;
+        }else{          return false;
+        }
+
+    }
+
+    public function saveDetails(){
+
+        global $database;
+
+        $details = array();
+
+        foreach( $this->info as $key ){
+
+            $details[ $key ] = $this->$key;
+
+        }
+
+        $database->insert("users_details", $details);
+
+        return true;
+
+
+    }
+
+}
+
 // class ff_user {
 
 //     private $password;

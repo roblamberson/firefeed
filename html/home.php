@@ -1,6 +1,65 @@
-<?php
+<?php session_start();
 
-session_start();
+$config = include('../config.php');
+
+require $config["php_dir"]."/data.php";
+require $config["php_dir"]."/client.php";
+
+
+
+// class me {
+
+//     public $user_id;
+//     public $first_name;
+//     public $last_name;
+//     public $organization;
+//     public $titles;
+//     public $city;
+//     public $country;
+//     public $about_me;
+//     public $email;
+//     public $website;
+//     public $telephone;
+//     public $cellular;
+//     public $social_profile_ur;
+//     public $details;
+//     public $info;
+
+//     public function __construct(){
+
+//         $this->info = array(    "first_name",       "last_name",
+//                                 "organization",     "titles",
+//                                 "city",             "country",
+//                                 "about_me",         "email",
+//                                 "website",          "telephone",
+//                                 "cellular",         "social_profile_url"   );
+
+//     }
+
+//     public function TableUpdate(){
+
+
+
+
+//     }
+
+//     public function TableInsert(){
+
+
+
+//     }
+
+//     public function UpdateOrInsert(){
+
+//         global $database;
+
+//         $pres = $database->select
+        
+
+//     }
+
+
+// }
 
 class home_page {
 
@@ -38,11 +97,9 @@ class home_page {
             $this->module_ui_files  = array();
             $this->xml_files        = array();
 
-
             $this->scan_modules_dir();
 
         }
-
 
     }
 
@@ -74,8 +131,6 @@ class home_page {
 
                      }
 
-                     //$counter = 0;
-
                      foreach( $this->xml_files[ $module ]->end_body_js_files->end_body_js_file as $val ){
 
                         $str = $modules_container . DIRECTORY_SEPARATOR . $module . DIRECTORY_SEPARATOR .$val;
@@ -84,7 +139,7 @@ class home_page {
 
                     }                     
 
-                     $this->module_ui_files[ $module ] = $modules_container . DIRECTORY_SEPARATOR . $module . DIRECTORY_SEPARATOR .$this->xml_files[ $module ]->ui_file;
+                    $this->module_ui_files[ $module ] = $modules_container . DIRECTORY_SEPARATOR . $module . DIRECTORY_SEPARATOR .$this->xml_files[ $module ]->ui_file;
 
 
                  }
@@ -99,34 +154,83 @@ class home_page {
 
 }
 
-
 if( isset( $_SESSION["username"] ) && isset( $_SESSION["email"] ) && isset( $_SESSION["user_id"] ) ){
 
+     if( isset( $_POST["load"] ) ){
 
-  $home = new home_page( array( "username" => $_SESSION["username"], "email" => $_SESSION["email"], "user_id" => $_SESSION["user_id"] ) );
+        $home = new home_page( array( "username" => $_SESSION["username"], "email" => $_SESSION["email"], "user_id" => $_SESSION["user_id"] ) );
 
-//    echo json_encode( $home->head_scripts );
+        $ui = array( "head" => $home->head_scripts, "module_ui" => $home->module_ui_files, "body" => $home->body_scripts, "modules" => $home->detected_modules );
+        
+        echo json_encode( $ui );
 
-    /**
-     * The info that needs to be built up here 
-     * 
-     *  - head javascripts
-     *  - body interfaces
-     *  - body javascripts
-     * 
-     */
+     }else if( isset( $_POST["task"] ) ){ 
+
+        switch( $_POST["task"] ){
+
+            case "user-session-info":
+
+            $details = array(    "user_id"   =>  $_SESSION["user_id"], 
+                                 "username"  =>  $_SESSION["username"],
+                                 "email"     =>  $_SESSION["email"] );
+
+            $user = new ff_user();
+            $user->user_id = $details["user_id"];
+
+            $more = $user->chk4userDetails();
+
+            if( $more ){
+
+                echo json_encode( $more[0] );
+
+            }else{
+
+                echo json_encode( array(    "user_id"       =>  $_SESSION["user_id"], 
+                                            "username"      =>  $_SESSION["username"],
+                                            "email"         =>  $_SESSION["email"],
+                                            "first_name"    =>  false ) );
+
+            }
 
 
+            // echo json_encode( array(    "user_id"   =>  $_SESSION["user_id"], 
+            //                             "username"  =>  $_SESSION["username"],
+            //                             "email"     =>  $_SESSION["email"] ) );
 
-     $gui = array( "head" => $home->head_scripts, "module_ui" => $home->module_ui_files, "body" => $home->body_scripts, "modules" => $home->detected_modules );
-     echo json_encode( $gui );
+            break;
+            case "me-details":
+                //  We need to at least count our posted variables before trying to insert them
+                //  into the database.
+                //  We're also going to need to instantiate the ff_user to use for saving details
+                $counter = 0; $user = new ff_user();
+                //  use the expected params to check for, then assign key variables from $_POST
+                foreach( $user->info as $key ){
 
+                    if( isset( $_POST[ $key ] ) ){ $counter++; $user->$key = $_POST[ $key ]; }
+
+                }
+
+                if( $counter >= 12 ){
+
+                    if( $user->chk4userDetails() ){ $user->updateDetails(); echo json_encode( "updated" );
+
+                    }else{                          $user->saveDetails(); echo json_encode( "inserted" );
+
+                    }
+
+                }else{ echo json_encode( false ); }
+
+            break;
+
+        }
+
+    }
 
 }else{ // the user is not logged in per session data
+      
+    echo json_encode( "no-sessions" );
 
-    // redirect to public/login page
-//    echo file_get_contents("public-redirect.html");
-    echo json_encode( "not" );
-}
+  }
+  
 
 ?>

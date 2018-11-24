@@ -1,39 +1,45 @@
 <div class="view-wrap" id="me-view">
-				
-
 	<h1>Me</h1>
-
 	<br>
-
 	<div class="grid-10 gutter-20">
 		<div class="span-7">
 			<form class="grid-form">
 				<fieldset>
-					<legend>My Details</legend>
+					<legend id="details_me">Details</legend>
 					<div data-row-span="2">
 						<div data-field-span="1" style="height: auto;">
-							<label>Product Name</label>
-							<input type="text">
+							<label>First Name</label>
+							<input type="text" id="first_name">
 						</div>
 						<div data-field-span="1" style="height: auto;">
-							<label>Tags</label>
-							<input type="text">
+							<label>Last Name</label>
+							<input type="text" id="last_name">
 						</div>
 					</div>
 					<div data-row-span="2">
 						<div data-field-span="1" style="height: auto;">
-							<label>Vendor</label>
-							<input type="text">
+							<label>Organization</label>
+							<input type="text" id="organization">
 						</div>
 						<div data-field-span="1" style="height: auto;">
-							<label>Product Type</label>
-							<input type="text">
+							<label>Titles</label>
+							<input type="text" id="titles">
+						</div>
+					</div>
+					<div data-row-span="2">
+						<div data-field-span="1" style="height: auto;">
+							<label>City</label>
+							<input type="text" id="city">
+						</div>
+						<div data-field-span="1" style="height: auto;">
+							<label>Country</label>
+							<input type="text" id="country">
 						</div>
 					</div>
 					<div data-row-span="1">
 						<div data-field-span="1" style="height: auto;">
-							<label>Product Description</label>
-							<textarea rows="6"></textarea>
+							<label>About Me</label>
+							<textarea rows="6" id="about_me"></textarea>
 						</div>
 					</div>
 				</fieldset>
@@ -42,43 +48,41 @@
 		<div class="span-3">
 			<form class="grid-form">
 				<fieldset>
-					<legend>Product Specs</legend>
+					<legend>Contact</legend>
 					<div data-row-span="1">
 						<div data-field-span="1" style="height: auto;">
-							<label>SKU</label>
-							<input type="text">
+							<label>Email</label>
+							<input type="text" id="email">
 						</div>
 					</div>
 					<div data-row-span="1">
 						<div data-field-span="1" style="height: auto;">
-							<label>Initial Stock Level</label>
-							<input type="text">
+							<label>Website</label>
+							<input type="text" id="website">
 						</div>
 					</div>
 					<div data-row-span="1">
 						<div data-field-span="1" style="height: auto;">
-							<label>Cost Price</label>
-							<input type="text">
+							<label>Telephone</label>
+							<input type="text" id="telephone">
 						</div>
 					</div>
 					<div data-row-span="1">
 						<div data-field-span="1" style="height: auto;">
-							<label>Wholesale Price</label>
-							<input type="text">
+							<label>Cellular</label>
+							<input type="text" id="cellular">
 						</div>
 					</div>
 					<div data-row-span="1">
 						<div data-field-span="1" style="height: auto;">
-							<label>Retail Price</label>
-							<input type="text">
+							<label>Social Profile URL</label>
+							<input type="text" id="social_profile_url">
 						</div>
 					</div>
 				</fieldset>
 			</form>
 		</div>
 	</div>
-
 	<br>
-	<a class="button-green bigger example-link">Add Product</a>
-
+	<a class="button-green bigger example-link" id="btn_save_details">Save Details</a>
 </div>

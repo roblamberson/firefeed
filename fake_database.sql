@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Nov 15, 2018 at 10:50 AM
+-- Generation Time: Nov 24, 2018 at 06:26 AM
 -- Server version: 5.7.24-0ubuntu0.18.04.1
 -- PHP Version: 7.2.10-0ubuntu0.18.04.1
 
@@ -105,8 +105,37 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `email`, `password`, `reg_code`, `username`, `status`, `verified`, `resettable`, `roles_mask`, `registered`, `last_login`, `force_logout`) VALUES
-(3, 'robertlamberson@msn.com', '$2y$12$xWHnDEGDur1vdjcf2bkHh.pbykq1j16ZzmUAltzMqdlaKgc.lMtDK', 'xWHnDEGDur1vdjcf2bkHhI', 'robertlamberson', 12, 0, 0, 3310, 1541558374, 1541558374, 0),
-(4, 'hoffajimmy@yahoo.com', '$2y$12$i3k4h5lII6pvrLIzL8xUG.Mt0TqhhpqfjoiTDEND6fmtx2af1MuP2', 'i3k4h5lII6pvrLIzL8xUGH', 'hoffajimmy', 12, 0, 0, 3310, 1542039154, 1542039154, 0);
+(3, 'robertlamberson@msn.com', '$2y$12$xWHnDEGDur1vdjcf2bkHh.pbykq1j16ZzmUAltzMqdlaKgc.lMtDK', 'xWHnDEGDur1vdjcf2bkHhI', 'robertlamberson', 12, 0, 0, 3310, 1541558374, 1541558374, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users_details`
+--
+
+CREATE TABLE `users_details` (
+  `user_id` int(11) NOT NULL,
+  `first_name` varchar(12) NOT NULL,
+  `last_name` varchar(12) NOT NULL,
+  `organization` varchar(32) NOT NULL,
+  `titles` varchar(32) NOT NULL,
+  `city` varchar(32) NOT NULL,
+  `country` varchar(32) NOT NULL,
+  `about_me` text NOT NULL,
+  `email` varchar(90) NOT NULL,
+  `website` varchar(90) NOT NULL,
+  `telephone` varchar(12) NOT NULL,
+  `cellular` varchar(12) NOT NULL,
+  `social_profile_url` varchar(90) NOT NULL,
+  `updated` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `users_details`
+--
+
+INSERT INTO `users_details` (`user_id`, `first_name`, `last_name`, `organization`, `titles`, `city`, `country`, `about_me`, `email`, `website`, `telephone`, `cellular`, `social_profile_url`, `updated`) VALUES
+(3, 'Rob', 'Lamberson', 'none', 'bum', 'Huntingburg', 'United States', 'asdf asdf asdf ', 'robertlamberson@msn.com', 'www.mysite.com', '7778887890', '2223332345', 'www.soc.net', '2018-11-24 05:21:17');
 
 -- --------------------------------------------------------
 
@@ -136,79 +165,7 @@ CREATE TABLE `visits` (
 INSERT INTO `visits` (`id`, `device_type`, `ip_via_server`, `ip_via_browser`, `hostname`, `org`, `city`, `country`, `region`, `postal`, `location`, `phone_code`) VALUES
 (1, 'fixed', '74.131.61.145', '74.131.61.145', 'cpe-74-131-61-145.kya.res.rr.com', 'AS10796 Time Warner Cable Internet LLC', 'Huntingburg', 'US', 'Indiana', 47542, '38.2929,-86.9464', '812'),
 (2, 'mobile', '74.131.61.145', '74.131.61.145', 'cpe-74-131-61-145.kya.res.rr.com', 'AS10796 Time Warner Cable Internet LLC', 'Huntingburg', 'US', 'Indiana', 47542, '38.2929,-86.9464', '812'),
-(3, 'mobile', '74.131.61.145', '74.131.61.145', 'cpe-74-131-61-145.kya.res.rr.com', 'AS10796 Time Warner Cable Internet LLC', 'Huntingburg', 'US', 'Indiana', 47542, '38.2929,-86.9464', '812'),
-(4, 'fixed', '96.29.8.194', '96.29.8.194', 'cpe-96-29-8-194.kya.res.rr.com', 'AS10796 Time Warner Cable Internet LLC', 'Huntingburg', 'US', 'Indiana', 47542, '38.2929,-86.9464', '812'),
-(5, 'fixed', '96.29.8.194', '96.29.8.194', 'cpe-96-29-8-194.kya.res.rr.com', 'AS10796 Time Warner Cable Internet LLC', 'Huntingburg', 'US', 'Indiana', 47542, '38.2929,-86.9464', '812'),
-(6, 'fixed', '96.29.8.194', '96.29.8.194', 'cpe-96-29-8-194.kya.res.rr.com', 'AS10796 Time Warner Cable Internet LLC', 'Huntingburg', 'US', 'Indiana', 47542, '38.2929,-86.9464', '812'),
-(7, 'fixed', '96.29.8.194', '96.29.8.194', 'cpe-96-29-8-194.kya.res.rr.com', 'AS10796 Time Warner Cable Internet LLC', 'Huntingburg', 'US', 'Indiana', 47542, '38.2929,-86.9464', '812'),
-(8, 'mobile', '96.29.8.194', '96.29.8.194', 'cpe-96-29-8-194.kya.res.rr.com', 'AS10796 Time Warner Cable Internet LLC', 'Huntingburg', 'US', 'Indiana', 47542, '38.2929,-86.9464', '812'),
-(9, 'mobile', '96.29.8.194', '96.29.8.194', 'cpe-96-29-8-194.kya.res.rr.com', 'AS10796 Time Warner Cable Internet LLC', 'Huntingburg', 'US', 'Indiana', 47542, '38.2929,-86.9464', '812'),
-(10, 'mobile', '96.29.8.194', '96.29.8.194', 'cpe-96-29-8-194.kya.res.rr.com', 'AS10796 Time Warner Cable Internet LLC', 'Huntingburg', 'US', 'Indiana', 47542, '38.2929,-86.9464', '812'),
-(11, 'mobile', '96.29.8.194', '96.29.8.194', 'cpe-96-29-8-194.kya.res.rr.com', 'AS10796 Time Warner Cable Internet LLC', 'Huntingburg', 'US', 'Indiana', 47542, '38.2929,-86.9464', '812'),
-(12, 'mobile', '96.29.8.194', '96.29.8.194', 'cpe-96-29-8-194.kya.res.rr.com', 'AS10796 Time Warner Cable Internet LLC', 'Huntingburg', 'US', 'Indiana', 47542, '38.2929,-86.9464', '812'),
-(13, 'mobile', '96.29.8.194', '96.29.8.194', 'cpe-96-29-8-194.kya.res.rr.com', 'AS10796 Time Warner Cable Internet LLC', 'Huntingburg', 'US', 'Indiana', 47542, '38.2929,-86.9464', '812'),
-(14, 'mobile', '96.29.8.194', '96.29.8.194', 'cpe-96-29-8-194.kya.res.rr.com', 'AS10796 Time Warner Cable Internet LLC', 'Huntingburg', 'US', 'Indiana', 47542, '38.2929,-86.9464', '812'),
-(15, 'mobile', '96.29.8.194', '96.29.8.194', 'cpe-96-29-8-194.kya.res.rr.com', 'AS10796 Time Warner Cable Internet LLC', 'Huntingburg', 'US', 'Indiana', 47542, '38.2929,-86.9464', '812'),
-(16, 'mobile', '96.29.8.194', '96.29.8.194', 'cpe-96-29-8-194.kya.res.rr.com', 'AS10796 Time Warner Cable Internet LLC', 'Huntingburg', 'US', 'Indiana', 47542, '38.2929,-86.9464', '812'),
-(17, 'mobile', '96.29.8.194', '96.29.8.194', 'cpe-96-29-8-194.kya.res.rr.com', 'AS10796 Time Warner Cable Internet LLC', 'Huntingburg', 'US', 'Indiana', 47542, '38.2929,-86.9464', '812'),
-(18, 'fixed', '192.168.0.114', '96.29.8.194', 'cpe-96-29-8-194.kya.res.rr.com', 'AS10796 Time Warner Cable Internet LLC', 'Huntingburg', 'US', 'Indiana', 47542, '38.2929,-86.9464', '812'),
-(19, 'mobile', '192.168.0.114', '96.29.8.194', 'cpe-96-29-8-194.kya.res.rr.com', 'AS10796 Time Warner Cable Internet LLC', 'Huntingburg', 'US', 'Indiana', 47542, '38.2929,-86.9464', '812'),
-(20, 'mobile', '192.168.0.114', '96.29.8.194', 'cpe-96-29-8-194.kya.res.rr.com', 'AS10796 Time Warner Cable Internet LLC', 'Huntingburg', 'US', 'Indiana', 47542, '38.2929,-86.9464', '812'),
-(21, 'mobile', '192.168.0.114', '96.29.8.194', 'cpe-96-29-8-194.kya.res.rr.com', 'AS10796 Time Warner Cable Internet LLC', 'Huntingburg', 'US', 'Indiana', 47542, '38.2929,-86.9464', '812'),
-(22, 'mobile', '192.168.0.114', '96.29.8.194', 'cpe-96-29-8-194.kya.res.rr.com', 'AS10796 Time Warner Cable Internet LLC', 'Huntingburg', 'US', 'Indiana', 47542, '38.2929,-86.9464', '812'),
-(23, 'mobile', '192.168.0.114', '96.29.8.194', 'cpe-96-29-8-194.kya.res.rr.com', 'AS10796 Time Warner Cable Internet LLC', 'Huntingburg', 'US', 'Indiana', 47542, '38.2929,-86.9464', '812'),
-(24, 'fixed', '192.168.0.106', '96.29.8.194', 'cpe-96-29-8-194.kya.res.rr.com', 'AS10796 Time Warner Cable Internet LLC', 'Huntingburg', 'US', 'Indiana', 47542, '38.2929,-86.9464', '812'),
-(25, 'mobile', '192.168.0.106', '96.29.8.194', 'cpe-96-29-8-194.kya.res.rr.com', 'AS10796 Time Warner Cable Internet LLC', 'Huntingburg', 'US', 'Indiana', 47542, '38.2929,-86.9464', '812'),
-(26, 'mobile', '192.168.0.106', '96.29.8.194', 'cpe-96-29-8-194.kya.res.rr.com', 'AS10796 Time Warner Cable Internet LLC', 'Huntingburg', 'US', 'Indiana', 47542, '38.2929,-86.9464', '812'),
-(27, 'mobile', '192.168.0.106', '96.29.8.194', 'cpe-96-29-8-194.kya.res.rr.com', 'AS10796 Time Warner Cable Internet LLC', 'Huntingburg', 'US', 'Indiana', 47542, '38.2929,-86.9464', '812'),
-(28, 'mobile', '192.168.0.106', '96.29.8.194', 'cpe-96-29-8-194.kya.res.rr.com', 'AS10796 Time Warner Cable Internet LLC', 'Huntingburg', 'US', 'Indiana', 47542, '38.2929,-86.9464', '812'),
-(29, 'mobile', '192.168.0.106', '96.29.8.194', 'cpe-96-29-8-194.kya.res.rr.com', 'AS10796 Time Warner Cable Internet LLC', 'Huntingburg', 'US', 'Indiana', 47542, '38.2929,-86.9464', '812'),
-(30, 'mobile', '192.168.0.106', '96.29.8.194', 'cpe-96-29-8-194.kya.res.rr.com', 'AS10796 Time Warner Cable Internet LLC', 'Huntingburg', 'US', 'Indiana', 47542, '38.2929,-86.9464', '812'),
-(31, 'mobile', '192.168.0.106', '96.29.8.194', 'cpe-96-29-8-194.kya.res.rr.com', 'AS10796 Time Warner Cable Internet LLC', 'Huntingburg', 'US', 'Indiana', 47542, '38.2929,-86.9464', '812'),
-(32, 'mobile', '192.168.0.106', '96.29.8.194', 'cpe-96-29-8-194.kya.res.rr.com', 'AS10796 Time Warner Cable Internet LLC', 'Huntingburg', 'US', 'Indiana', 47542, '38.2929,-86.9464', '812'),
-(33, 'mobile', '192.168.0.106', '96.29.8.194', 'cpe-96-29-8-194.kya.res.rr.com', 'AS10796 Time Warner Cable Internet LLC', 'Huntingburg', 'US', 'Indiana', 47542, '38.2929,-86.9464', '812'),
-(34, 'mobile', '192.168.0.106', '96.29.8.194', 'cpe-96-29-8-194.kya.res.rr.com', 'AS10796 Time Warner Cable Internet LLC', 'Huntingburg', 'US', 'Indiana', 47542, '38.2929,-86.9464', '812'),
-(35, 'mobile', '192.168.0.106', '96.29.8.194', 'cpe-96-29-8-194.kya.res.rr.com', 'AS10796 Time Warner Cable Internet LLC', 'Huntingburg', 'US', 'Indiana', 47542, '38.2929,-86.9464', '812'),
-(36, 'fixed', '192.168.0.106', '96.29.8.194', 'cpe-96-29-8-194.kya.res.rr.com', 'AS10796 Time Warner Cable Internet LLC', 'Huntingburg', 'US', 'Indiana', 47542, '38.2929,-86.9464', '812'),
-(37, 'fixed', '192.168.0.106', '96.29.8.194', 'cpe-96-29-8-194.kya.res.rr.com', 'AS10796 Time Warner Cable Internet LLC', 'Huntingburg', 'US', 'Indiana', 47542, '38.2929,-86.9464', '812'),
-(38, 'mobile', '192.168.0.106', '96.29.8.194', 'cpe-96-29-8-194.kya.res.rr.com', 'AS10796 Time Warner Cable Internet LLC', 'Huntingburg', 'US', 'Indiana', 47542, '38.2929,-86.9464', '812'),
-(39, 'mobile', '192.168.0.106', '96.29.8.194', 'cpe-96-29-8-194.kya.res.rr.com', 'AS10796 Time Warner Cable Internet LLC', 'Huntingburg', 'US', 'Indiana', 47542, '38.2929,-86.9464', '812'),
-(40, 'mobile', '192.168.0.106', '96.29.8.194', 'cpe-96-29-8-194.kya.res.rr.com', 'AS10796 Time Warner Cable Internet LLC', 'Huntingburg', 'US', 'Indiana', 47542, '38.2929,-86.9464', '812'),
-(41, 'mobile', '192.168.0.106', '96.29.8.194', 'cpe-96-29-8-194.kya.res.rr.com', 'AS10796 Time Warner Cable Internet LLC', 'Huntingburg', 'US', 'Indiana', 47542, '38.2929,-86.9464', '812'),
-(42, 'mobile', '192.168.0.106', '96.29.8.194', 'cpe-96-29-8-194.kya.res.rr.com', 'AS10796 Time Warner Cable Internet LLC', 'Huntingburg', 'US', 'Indiana', 47542, '38.2929,-86.9464', '812'),
-(43, 'mobile', '192.168.0.106', '96.29.8.194', 'cpe-96-29-8-194.kya.res.rr.com', 'AS10796 Time Warner Cable Internet LLC', 'Huntingburg', 'US', 'Indiana', 47542, '38.2929,-86.9464', '812'),
-(44, 'mobile', '192.168.0.106', '96.29.8.194', 'cpe-96-29-8-194.kya.res.rr.com', 'AS10796 Time Warner Cable Internet LLC', 'Huntingburg', 'US', 'Indiana', 47542, '38.2929,-86.9464', '812'),
-(45, 'mobile', '192.168.0.106', '96.29.8.194', 'cpe-96-29-8-194.kya.res.rr.com', 'AS10796 Time Warner Cable Internet LLC', 'Huntingburg', 'US', 'Indiana', 47542, '38.2929,-86.9464', '812'),
-(46, 'mobile', '192.168.0.106', '96.29.8.194', 'cpe-96-29-8-194.kya.res.rr.com', 'AS10796 Time Warner Cable Internet LLC', 'Huntingburg', 'US', 'Indiana', 47542, '38.2929,-86.9464', '812'),
-(47, 'mobile', '192.168.0.106', '96.29.8.194', 'cpe-96-29-8-194.kya.res.rr.com', 'AS10796 Time Warner Cable Internet LLC', 'Huntingburg', 'US', 'Indiana', 47542, '38.2929,-86.9464', '812'),
-(48, 'mobile', '192.168.0.106', '96.29.8.194', 'cpe-96-29-8-194.kya.res.rr.com', 'AS10796 Time Warner Cable Internet LLC', 'Huntingburg', 'US', 'Indiana', 47542, '38.2929,-86.9464', '812'),
-(49, 'mobile', '192.168.0.106', '96.29.8.194', 'cpe-96-29-8-194.kya.res.rr.com', 'AS10796 Time Warner Cable Internet LLC', 'Huntingburg', 'US', 'Indiana', 47542, '38.2929,-86.9464', '812'),
-(50, 'mobile', '192.168.0.106', '96.29.8.194', 'cpe-96-29-8-194.kya.res.rr.com', 'AS10796 Time Warner Cable Internet LLC', 'Huntingburg', 'US', 'Indiana', 47542, '38.2929,-86.9464', '812'),
-(51, 'mobile', '192.168.0.106', '96.29.8.194', 'cpe-96-29-8-194.kya.res.rr.com', 'AS10796 Time Warner Cable Internet LLC', 'Huntingburg', 'US', 'Indiana', 47542, '38.2929,-86.9464', '812'),
-(52, 'mobile', '192.168.0.106', '96.29.8.194', 'cpe-96-29-8-194.kya.res.rr.com', 'AS10796 Time Warner Cable Internet LLC', 'Huntingburg', 'US', 'Indiana', 47542, '38.2929,-86.9464', '812'),
-(53, 'mobile', '192.168.0.106', '96.29.8.194', 'cpe-96-29-8-194.kya.res.rr.com', 'AS10796 Time Warner Cable Internet LLC', 'Huntingburg', 'US', 'Indiana', 47542, '38.2929,-86.9464', '812'),
-(54, 'mobile', '192.168.0.106', '96.29.8.194', 'cpe-96-29-8-194.kya.res.rr.com', 'AS10796 Time Warner Cable Internet LLC', 'Huntingburg', 'US', 'Indiana', 47542, '38.2929,-86.9464', '812'),
-(55, 'mobile', '192.168.0.106', '96.29.8.194', 'cpe-96-29-8-194.kya.res.rr.com', 'AS10796 Time Warner Cable Internet LLC', 'Huntingburg', 'US', 'Indiana', 47542, '38.2929,-86.9464', '812'),
-(56, 'mobile', '192.168.0.106', '96.29.8.194', 'cpe-96-29-8-194.kya.res.rr.com', 'AS10796 Time Warner Cable Internet LLC', 'Huntingburg', 'US', 'Indiana', 47542, '38.2929,-86.9464', '812'),
-(57, 'mobile', '192.168.0.106', '96.29.8.194', 'cpe-96-29-8-194.kya.res.rr.com', 'AS10796 Time Warner Cable Internet LLC', 'Huntingburg', 'US', 'Indiana', 47542, '38.2929,-86.9464', '812'),
-(58, 'mobile', '192.168.0.106', '96.29.8.194', 'cpe-96-29-8-194.kya.res.rr.com', 'AS10796 Time Warner Cable Internet LLC', 'Huntingburg', 'US', 'Indiana', 47542, '38.2929,-86.9464', '812'),
-(59, 'mobile', '192.168.0.106', '96.29.8.194', 'cpe-96-29-8-194.kya.res.rr.com', 'AS10796 Time Warner Cable Internet LLC', 'Huntingburg', 'US', 'Indiana', 47542, '38.2929,-86.9464', '812'),
-(60, 'mobile', '192.168.0.106', '96.29.8.194', 'cpe-96-29-8-194.kya.res.rr.com', 'AS10796 Time Warner Cable Internet LLC', 'Huntingburg', 'US', 'Indiana', 47542, '38.2929,-86.9464', '812'),
-(61, 'mobile', '192.168.0.106', '96.29.8.194', 'cpe-96-29-8-194.kya.res.rr.com', 'AS10796 Time Warner Cable Internet LLC', 'Huntingburg', 'US', 'Indiana', 47542, '38.2929,-86.9464', '812'),
-(62, 'mobile', '192.168.0.106', '96.29.8.194', 'cpe-96-29-8-194.kya.res.rr.com', 'AS10796 Time Warner Cable Internet LLC', 'Huntingburg', 'US', 'Indiana', 47542, '38.2929,-86.9464', '812'),
-(63, 'mobile', '192.168.0.106', '96.29.8.194', 'cpe-96-29-8-194.kya.res.rr.com', 'AS10796 Time Warner Cable Internet LLC', 'Huntingburg', 'US', 'Indiana', 47542, '38.2929,-86.9464', '812'),
-(64, 'mobile', '192.168.0.106', '96.29.8.194', 'cpe-96-29-8-194.kya.res.rr.com', 'AS10796 Time Warner Cable Internet LLC', 'Huntingburg', 'US', 'Indiana', 47542, '38.2929,-86.9464', '812'),
-(65, 'mobile', '192.168.0.106', '96.29.8.194', 'cpe-96-29-8-194.kya.res.rr.com', 'AS10796 Time Warner Cable Internet LLC', 'Huntingburg', 'US', 'Indiana', 47542, '38.2929,-86.9464', '812'),
-(66, 'mobile', '192.168.0.106', '96.29.8.194', 'cpe-96-29-8-194.kya.res.rr.com', 'AS10796 Time Warner Cable Internet LLC', 'Huntingburg', 'US', 'Indiana', 47542, '38.2929,-86.9464', '812'),
-(67, 'fixed', '192.168.0.124', '96.29.8.194', 'cpe-96-29-8-194.kya.res.rr.com', 'AS10796 Time Warner Cable Internet LLC', 'Huntingburg', 'US', 'Indiana', 47542, '38.2929,-86.9464', '812'),
-(68, 'mobile', '192.168.0.124', '96.29.8.194', 'cpe-96-29-8-194.kya.res.rr.com', 'AS10796 Time Warner Cable Internet LLC', 'Huntingburg', 'US', 'Indiana', 47542, '38.2929,-86.9464', '812'),
-(69, 'fixed', '192.168.0.124', '96.29.8.194', 'cpe-96-29-8-194.kya.res.rr.com', 'AS10796 Time Warner Cable Internet LLC', 'Huntingburg', 'US', 'Indiana', 47542, '38.2929,-86.9464', '812'),
-(70, 'fixed', '192.168.0.124', '96.29.8.194', 'cpe-96-29-8-194.kya.res.rr.com', 'AS10796 Time Warner Cable Internet LLC', 'Huntingburg', 'US', 'Indiana', 47542, '38.2929,-86.9464', '812'),
-(71, 'mobile', '96.29.8.194', '96.29.8.194', 'cpe-96-29-8-194.kya.res.rr.com', 'AS10796 Time Warner Cable Internet LLC', 'Huntingburg', 'US', 'Indiana', 47542, '38.2929,-86.9464', '812'),
-(72, 'fixed', '192.168.0.114', '96.29.8.194', 'cpe-96-29-8-194.kya.res.rr.com', 'AS10796 Time Warner Cable Internet LLC', 'Huntingburg', 'US', 'Indiana', 47542, '38.2929,-86.9464', '812'),
-(73, 'fixed', '192.168.0.114', '96.29.8.194', 'cpe-96-29-8-194.kya.res.rr.com', 'AS10796 Time Warner Cable Internet LLC', 'Huntingburg', 'US', 'Indiana', 47542, '38.2929,-86.9464', '812'),
-(74, 'fixed', '192.168.0.114', '96.29.8.194', 'cpe-96-29-8-194.kya.res.rr.com', 'AS10796 Time Warner Cable Internet LLC', 'Huntingburg', 'US', 'Indiana', 47542, '38.2929,-86.9464', '812'),
-(75, 'fixed', '96.29.8.194', '96.29.8.194', 'cpe-96-29-8-194.kya.res.rr.com', 'AS10796 Time Warner Cable Internet LLC', 'Huntingburg', 'US', 'Indiana', 47542, '38.2929,-86.9464', '812');
+(3, 'mobile', '74.131.61.145', '74.131.61.145', 'cpe-74-131-61-145.kya.res.rr.com', 'AS10796 Time Warner Cable Internet LLC', 'Huntingburg', 'US', 'Indiana', 47542, '38.2929,-86.9464', '812');
 
 --
 -- Indexes for dumped tables
@@ -234,6 +191,13 @@ ALTER TABLE `users`
   ADD UNIQUE KEY `email` (`email`);
 
 --
+-- Indexes for table `users_details`
+--
+ALTER TABLE `users_details`
+  ADD PRIMARY KEY (`user_id`),
+  ADD KEY `user_id` (`user_id`);
+
+--
 -- Indexes for table `visits`
 --
 ALTER TABLE `visits`
@@ -257,12 +221,12 @@ ALTER TABLE `places`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `visits`
 --
 ALTER TABLE `visits`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=76;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
