@@ -20,16 +20,15 @@ if( isset( $_SESSION["email"] ) && isset( $_SESSION["username"] ) && isset( $_SE
      */
 
     //}
+    echo file_get_contents("public_content.html");
 
-    echo "Public Content";
-    echo " Plus User Options";
 
 
 }else{
 // call $client->USER_IP;
 // call $client->device_type;
 
-echo "Public Content";
+echo file_get_contents("public_content.html");
 
 /**
  *  DISPLAY THE PUBLIC PAGE

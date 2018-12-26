@@ -2,9 +2,9 @@
 
 return array(
 	'db' => array(	'database_type' => 'mysql',
-					'database_name' => 'fake_database',
+					'database_name' => 'firefeed',
 					'server' 		=> 'localhost',
-					'username' 		=> '',
+					'username' 		=> 'elemental',
 					'password' 		=> ''),
 					
 	'php_dir'	=> '../php', // '../php' for one below webroot or '/php'
