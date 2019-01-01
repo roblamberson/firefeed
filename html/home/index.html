@@ -60,7 +60,6 @@
 	<script src="../bower_components/gridforms/gridforms/gridforms.js"></script>
     <script src="../js/base.js"></script>
     <script>
-<<<<<<< HEAD
 /*
 Posting a load variable to the home.php file will trigger
 the server to check for user session data that will report 
@@ -97,11 +96,8 @@ this home page together appropriately for this specific user.
 			|_\___/\__,_\__,_|  \_,_|_| /__/ .__/\___\__| \__,_| |_|_||_| \__,_\__,_|\__\__,_|
 											|_|                                                */
 			$.each(data.module_ui, function(index, value) {
-
-				console.log( "this is where I am loading the modules in the javascript");
-				console.log( index );
-
-
+				// console.log( "this is where I am loading the modules in the javascript");
+				// console.log( index );
 				$.ajax( {type: "GET", url: "../" + value,
 
 					success: function(text) {
@@ -124,6 +120,12 @@ this home page together appropriately for this specific user.
 								$( "#" + this.id ).parent().addClass( "active" );
 								// save this information in the menu itself so we can use it later
 								$( "#ul-home-menu" ).data( "current" , this.id );
+
+								$( "#" + cur.replace( '_', '' ) + "-view" ).hide();
+
+								var rei = this.id;
+
+								$( "#" + rei.replace('_','') + "-view" ).show();
 
 							});							
 							
@@ -173,10 +175,35 @@ this home page together appropriately for this specific user.
 							}, "json");							
 
 							var str = "<li><a href=\"#\" id=\"_"+index+"\" >"+index+"</li>";
+
 							$("#ul-home-menu").prepend( str );
+
 							$("#_"+index).parent().addClass("active");
+
 							$("#ul-home-menu").data("current", "_"+index );
 
+							$("#_"+index).on("click", function(){
+
+								// find out the last menu item to be activated
+								var cur = $( "#ul-home-menu" ).data( "current" );
+								// remove the class that highlights it
+								$("#"+cur).parent().removeClass("active");
+
+								var cur = cur.replace( '_', '');
+
+								$( "#" + cur + "-view" ).hide();
+
+								$("#"+cur+"").hide();
+
+								var rei = this.id;
+
+								$( "#" + rei ).parent().addClass("active");
+
+								$( "#ul-home-menu" ).data( "current" , rei );
+
+								$( "#" + rei.replace('_','') + "-view" ).show();								
+
+							} );
 
 						}
 
@@ -196,29 +223,6 @@ this home page together appropriately for this specific user.
 
 	}, "json");
 
-=======
-	$.post("../home.php", { task: "whatever" }, function(data) {
-
-		for(var i in data.head){ $.getScript("../" + data.head[i]); }
-
-		$.each(data.module_ui, function(index, value) {
-
-			$.ajax( {type: "GET", url: "../" + value,
-
-			success: function(text) {
-
-				$('#home_content').append(text);
-			
-					if( index != "me" ){ $("#" + index + "-view" ).hide(); }
-				
-			}
-			
-			}); // /end $.ajax
-
-		}); // /end $.each
-
-	}, "json");
->>>>>>> master
 	</script>
 </body>
 </html>

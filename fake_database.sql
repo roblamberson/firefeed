@@ -3,11 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
-<<<<<<< HEAD
 -- Generation Time: Nov 24, 2018 at 06:26 AM
-=======
--- Generation Time: Nov 08, 2018 at 03:22 AM
->>>>>>> master
 -- Server version: 5.7.24-0ubuntu0.18.04.1
 -- PHP Version: 7.2.10-0ubuntu0.18.04.1
 
@@ -110,7 +106,6 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `email`, `password`, `reg_code`, `username`, `status`, `verified`, `resettable`, `roles_mask`, `registered`, `last_login`, `force_logout`) VALUES
 (3, 'robertlamberson@msn.com', '$2y$12$xWHnDEGDur1vdjcf2bkHh.pbykq1j16ZzmUAltzMqdlaKgc.lMtDK', 'xWHnDEGDur1vdjcf2bkHhI', 'robertlamberson', 12, 0, 0, 3310, 1541558374, 1541558374, 0);
-<<<<<<< HEAD
 
 -- --------------------------------------------------------
 
@@ -171,8 +166,6 @@ INSERT INTO `visits` (`id`, `device_type`, `ip_via_server`, `ip_via_browser`, `h
 (1, 'fixed', '74.131.61.145', '74.131.61.145', 'cpe-74-131-61-145.kya.res.rr.com', 'AS10796 Time Warner Cable Internet LLC', 'Huntingburg', 'US', 'Indiana', 47542, '38.2929,-86.9464', '812'),
 (2, 'mobile', '74.131.61.145', '74.131.61.145', 'cpe-74-131-61-145.kya.res.rr.com', 'AS10796 Time Warner Cable Internet LLC', 'Huntingburg', 'US', 'Indiana', 47542, '38.2929,-86.9464', '812'),
 (3, 'mobile', '74.131.61.145', '74.131.61.145', 'cpe-74-131-61-145.kya.res.rr.com', 'AS10796 Time Warner Cable Internet LLC', 'Huntingburg', 'US', 'Indiana', 47542, '38.2929,-86.9464', '812');
-=======
->>>>>>> master
 
 --
 -- Indexes for dumped tables
@@ -198,7 +191,6 @@ ALTER TABLE `users`
   ADD UNIQUE KEY `email` (`email`);
 
 --
-<<<<<<< HEAD
 -- Indexes for table `users_details`
 --
 ALTER TABLE `users_details`
@@ -212,8 +204,6 @@ ALTER TABLE `visits`
   ADD PRIMARY KEY (`id`);
 
 --
-=======
->>>>>>> master
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -232,14 +222,11 @@ ALTER TABLE `places`
 --
 ALTER TABLE `users`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-<<<<<<< HEAD
 --
 -- AUTO_INCREMENT for table `visits`
 --
 ALTER TABLE `visits`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-=======
->>>>>>> master
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
