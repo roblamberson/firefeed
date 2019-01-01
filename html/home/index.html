@@ -60,6 +60,7 @@
 	<script src="../bower_components/gridforms/gridforms/gridforms.js"></script>
     <script src="../js/base.js"></script>
     <script>
+<<<<<<< HEAD
 /*
 Posting a load variable to the home.php file will trigger
 the server to check for user session data that will report 
@@ -195,6 +196,29 @@ this home page together appropriately for this specific user.
 
 	}, "json");
 
+=======
+	$.post("../home.php", { task: "whatever" }, function(data) {
+
+		for(var i in data.head){ $.getScript("../" + data.head[i]); }
+
+		$.each(data.module_ui, function(index, value) {
+
+			$.ajax( {type: "GET", url: "../" + value,
+
+			success: function(text) {
+
+				$('#home_content').append(text);
+			
+					if( index != "me" ){ $("#" + index + "-view" ).hide(); }
+				
+			}
+			
+			}); // /end $.ajax
+
+		}); // /end $.each
+
+	}, "json");
+>>>>>>> master
 	</script>
 </body>
 </html>
