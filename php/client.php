@@ -653,6 +653,30 @@ class ff_user {
 
     }
 
+    public function updateDetails(){
+        global $database;
+        $database->update("users_details", [
+            "first_name" => $this->first_name,
+            "last_name" => $this->last_name,
+            "organization" => $this->organization,
+            "titles" => $this->titles,
+            "city" => $this->city,
+            "country" => $this->country,
+            "about_me" => $this->about_me,
+            "email" => $this->email,
+            "website" => $this->website,
+            "telephone" => $this->telephone,
+            "cellular" => $this->cellular,
+            "social_profile_url" => $this->social_profile_url,
+        ], [
+            "user_id" => $this->user_id
+        ]);
+         
+            return true;
+
+
+    }
+
 }
 
 // class ff_user {

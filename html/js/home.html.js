@@ -93,7 +93,7 @@ class User {
     }
 
   
-  }
+  }  // end of class user
 
 
 

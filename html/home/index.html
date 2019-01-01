@@ -132,47 +132,6 @@ this home page together appropriately for this specific user.
 							$( "#" + index + "-view" ).hide(); 
 						
 						}else{
-							// me-view interface is being left open here 
-							// so let's ask the data to tell us exactly 
-							// who this data is meant for.
-							$.post("../home.php", { task:"user-session-info" }, function( info ){
-
-								console.log( "session data from server" ); console.log( info );
-								// this is where we can use the server's user session data to 
-								// deal with whatever shit the interface can't do without.
-
-								$( "#details_me" ).html( " " + info.username + "'s details" );
-								//b-username
-								$("#b-username").html( info.username );
-
-								$("#b-user-id").html( info.user_id );
-
-								$("#b-user-id").data( "user-id", info.user_id );
-
-								$("#email").val( info.email );
-
-								if( info.first_name !== false ){
-
-									$("#first_name").val( info.first_name );
-									$("#last_name").val( info.last_name );
-									$("#organization").val( info.organization );
-									$("#titles").val( info.titles );
-									$("#city").val( info.city );
-									$("#country").val( info.country );
-									$("#about_me").text( info.about_me );
-									$("#email").val( info.email );
-									$("#website").val( info.website );
-									$("#telephone").val( info.telephone );
-									$("#cellular").val( info.cellular );
-									$("#social_profile_url").val( info.social_profile_url );
-
-								}else{
-
-									console.log( "that's all the shit we've got" );
-
-								}
-
-							}, "json");							
 
 							var str = "<li><a href=\"#\" id=\"_"+index+"\" >"+index+"</li>";
 
